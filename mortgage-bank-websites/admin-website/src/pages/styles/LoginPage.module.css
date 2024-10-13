@@ -1,0 +1,14 @@
+.container {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #fff;
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-text {
+  font-size: 34px;
+  text-shadow: 2px 2px 4px #083b59;
+}

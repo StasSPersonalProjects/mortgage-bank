@@ -1,0 +1,12 @@
+package com.mortgageBank.mortgageMarginsConfig.model.enums;
+
+public enum LoanType {
+
+    FIXED_RATE_NON_INDEXED,
+    FIXED_RATE_INDEX_LINKED,
+    PRIME_RATE,
+    ADJUSTABLE_RATE_X2_NON_INDEXED,
+    ADJUSTABLE_RATE_X2_INDEX_LINKED,
+    ADJUSTABLE_RATE_X5_NON_INDEXED,
+    ADJUSTABLE_RATE_X5_INDEX_LINKED
+}

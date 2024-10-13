@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="mortgage-requests-storage" />
+        <module name="config-server" />
+        <module name="otp-service" />
+        <module name="auth-service" />
+        <module name="mortgage-margins-config" />
+        <module name="mortgage-calculator" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-service" options="-parameters" />
+      <module name="config-server" options="-parameters" />
+      <module name="mortgage-calculator" options="-parameters" />
+      <module name="mortgage-margins-config" options="-parameters" />
+      <module name="mortgage-requests-storage" options="-parameters" />
+      <module name="otp-service" options="-parameters" />
+    </option>
+  </component>
+</project>

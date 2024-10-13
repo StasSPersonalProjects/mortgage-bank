@@ -1,0 +1,23 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  font-family: "Roboto", system-ui;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 36px;
+  color: rgb(101, 177, 243);
+}
+
+.text-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 100px;
+  margin-left: 230px;
+}
+
+.website-logo {
+  height: 100px;
+  padding-left: 40px;
+  padding-top: 20px;
+}

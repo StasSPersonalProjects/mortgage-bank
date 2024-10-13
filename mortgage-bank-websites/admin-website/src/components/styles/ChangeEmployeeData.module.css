@@ -1,0 +1,175 @@
+.form-container {
+  background-color: rgb(100, 177, 225);
+  border-radius: 8px;
+  padding: 0 20px 20px 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  font-family: "Poppins", sans-serif;
+}
+
+.form-title {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.radio-group {
+  margin: 10px 0;
+}
+
+.radio-group input {
+  margin-right: 10px;
+}
+
+.radio-group label {
+  margin-left: 5px;
+}
+
+.input-group {
+  margin-top: 15px;
+}
+
+.input {
+  padding: 6px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.text-input {
+  padding: 6px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: auto;
+  transition: border-color 0.3s ease;
+}
+
+.text-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.submit-btn {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+.submit-btn:hover {
+  background-color: rgb(6, 50, 77);
+}
+
+.submit-btn:disabled {
+  cursor: not-allowed;
+}
+
+.result-container {
+  margin-top: 20px;
+}
+
+.result-container p {
+  margin: 0;
+}
+
+.roles {
+  background-color: rgb(245, 245, 245);
+  color: rgb(100, 177, 225);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.roles-label {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.roles-container {
+  display: inline-block;
+  background-color: rgb(245, 245, 245);
+  color: rgb(100, 177, 225);
+  padding: 6px 10px;
+  margin-right: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.roles-selection {
+  margin-top: 15px;
+}
+
+.roles-selection button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.change-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.change-button:hover {
+  background-color: rgb(6, 50, 77);
+}
+
+.active-status {
+  color: green;
+}
+
+.inactive-status {
+  color: red;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 15px;
+  gap: 15px;
+}
+
+.button-group button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.button-group button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.button-group button:not(:disabled):hover {
+  background-color: rgb(6, 50, 77);
+}
+
+.error-message {
+  margin-top: 15px;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #f5c6cb;
+  font-size: 14px;
+}

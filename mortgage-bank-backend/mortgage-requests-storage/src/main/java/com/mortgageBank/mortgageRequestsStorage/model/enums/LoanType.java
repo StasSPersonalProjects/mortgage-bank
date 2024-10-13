@@ -1,0 +1,12 @@
+package com.mortgageBank.mortgageRequestsStorage.model.enums;
+
+public enum LoanType {
+
+    FIXED_RATE_NON_INDEXED,
+    FIXED_RATE_INDEX_LINKED,
+    PRIME_RATE,
+    ADJUSTIBLE_RATE_X2_NON_INDEXED,
+    ADJUSTIBLE_RATE_X2_INDEX_LINKED,
+    ADJUSTIBLE_RATE_X5_NON_INDEXED,
+    ADJUSTIBLE_RATE_X5_INDEX_LINKED
+}

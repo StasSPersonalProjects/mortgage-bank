@@ -1,0 +1,76 @@
+.form-container {
+  background-color: rgb(100, 177, 225);
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  font-family: "Poppins", sans-serif;
+}
+
+.loan-type-selection {
+  margin-bottom: 20px;
+}
+
+.loan-type-label {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.rate-select {
+  width: 100%;
+  padding: 6px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.rate-select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.rate-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.rate-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.rate-label {
+  width: 120px;
+  margin: 0;
+  text-align: left;
+}
+
+.rate-input {
+  width: 100px;
+  padding: 6px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.rate-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.submit-button {
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: rgb(6, 50, 77);
+}

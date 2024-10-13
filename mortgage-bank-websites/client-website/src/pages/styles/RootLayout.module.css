@@ -1,0 +1,19 @@
+.all-content {
+  display: flex;
+  justify-content: space-evenly;
+  width: 95%;
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.main-content {
+  flex-basis: 50%;
+  max-width: 50%;
+}
+
+.left-logo,
+.right-logo {
+  flex-basis: 15%;
+  max-width: 25%;
+  margin-top: 20px;
+}

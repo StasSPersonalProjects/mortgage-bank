@@ -1,0 +1,31 @@
+.nav-bar {
+  font-family: "Roboto", system-ui;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 22px;
+  background-color: rgb(106, 185, 255);
+  color: #fff;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-radius: 20px;
+}
+
+.nav-bar ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  list-style-type: none;
+}
+
+.nav-bar ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-bar ul li a:hover {
+  transition: 0.5s;
+  color: rgb(251, 242, 176);
+}
