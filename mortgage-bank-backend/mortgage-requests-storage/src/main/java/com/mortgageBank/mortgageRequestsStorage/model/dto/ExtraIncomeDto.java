@@ -13,5 +13,6 @@ import lombok.NoArgsConstructor;
 public class ExtraIncomeDto {
 
     private IncomeType incomeType;
+    private String description;
     private int amount;
 }

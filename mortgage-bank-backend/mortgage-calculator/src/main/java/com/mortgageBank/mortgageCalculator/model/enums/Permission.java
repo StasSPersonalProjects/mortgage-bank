@@ -15,7 +15,10 @@ public enum Permission {
     UNDERWRITER_CREATE("underwriter:create"),
     UNDERWRITER_READ("underwriter:read"),
     UNDERWRITER_UPDATE("underwriter:update"),
-    UNDERWRITER_DELETE("underwriter:delete");
+    UNDERWRITER_DELETE("underwriter:delete"),
+    CONSULTANT_CREATE("consultant:create"),
+    CONSULTANT_READ("consultant:read"),
+    CONSULTANT_UPDATE("consultant:update");
 
     @Getter
     private final String permission;

@@ -2,7 +2,7 @@ package com.mortgageBank.mortgageRequestsStorage.model.enums;
 
 public enum EmploymentType {
 
-    HIRED_WORKER,
+    HIRED_EMPLOYEE,
     BUSINESS_OWNER,
     COMPANY_OWNER
 }

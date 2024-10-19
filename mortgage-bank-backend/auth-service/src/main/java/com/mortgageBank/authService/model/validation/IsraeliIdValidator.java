@@ -12,7 +12,7 @@ public class IsraeliIdValidator implements ConstraintValidator<ValidIsraeliId, S
     @Override
     public boolean isValid(String id, ConstraintValidatorContext context) {
         if (id == null || id.length() != 9 || !id.matches("\\d+")) {
-            return false; // Check for null, length, and numeric only
+            return false;
         }
 
         int sum = 0;

@@ -18,7 +18,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.mortgageBank.mortgageMarginsConfig.model.enums.Permission.*;
-import static com.mortgageBank.mortgageMarginsConfig.model.enums.Role.*;
+import static com.mortgageBank.mortgageMarginsConfig.model.enums.Role.ADMIN;
+import static com.mortgageBank.mortgageMarginsConfig.model.enums.Role.UNDERWRITER;
 import static org.springframework.http.HttpMethod.*;
 
 @Configuration
@@ -59,14 +60,19 @@ public class SecurityConfiguration {
             "/basic_rates/config/get_basics/**"
     };
 
+    private final JwtFilter jwtFilter;
+
     @Autowired
-    private JwtFilter jwtFilter;
+    public SecurityConfiguration(JwtFilter jwtFilter) {
+        this.jwtFilter = jwtFilter;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
+                .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> {
                     request.requestMatchers(ADMIN_ACCESS_LIST)
                             .hasRole(ADMIN.name());
@@ -99,4 +105,5 @@ public class SecurityConfiguration {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
 }

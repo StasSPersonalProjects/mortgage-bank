@@ -9,11 +9,15 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfig {
 
+    private final WebClient.Builder webClientBuilder;
+
     @Autowired
-    private WebClient.Builder webClientBuilder;
+    public WebClientConfig(WebClient.Builder webClientBuilder) {
+        this.webClientBuilder = webClientBuilder;
+    }
 
     @Bean
     public WebClient webClientGetMargins(@Value("${margins.service.url}") String marginsServiceUrl) {
-        return WebClient.builder().baseUrl(marginsServiceUrl).build();
+        return webClientBuilder.baseUrl(marginsServiceUrl).build();
     }
 }

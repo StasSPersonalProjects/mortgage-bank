@@ -38,6 +38,13 @@ public enum Role {
                     UNDERWRITER_UPDATE,
                     UNDERWRITER_DELETE
             )
+    ),
+    CONSULTANT(
+            Set.of(
+                    CONSULTANT_CREATE,
+                    CONSULTANT_READ,
+                    CONSULTANT_UPDATE
+            )
     );
 
     @Getter

@@ -1,0 +1,21 @@
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.message h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.message h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #fff;
+}

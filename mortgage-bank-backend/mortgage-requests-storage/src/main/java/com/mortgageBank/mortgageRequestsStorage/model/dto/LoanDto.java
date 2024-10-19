@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class LoanDto {
 
     private LoanType loanType;
-    private int amount;
-    private int duration;
-    private double interestRate;
+    private int loanAmount;
+    private int durationInMonths;
+    private double annualInterestRate;
 }

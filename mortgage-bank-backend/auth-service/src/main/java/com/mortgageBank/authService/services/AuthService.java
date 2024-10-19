@@ -38,7 +38,8 @@ public class AuthService {
     private static final Map<String, Integer> ROLES_CODES_MAP = Map.of(
             "ADMIN", 6875,
             "CUSTOMER", 7485,
-            "UNDERWRITER", 1349
+            "UNDERWRITER", 1349,
+            "CONSULTANT", 2458
     );
 
     @Autowired
@@ -91,7 +92,6 @@ public class AuthService {
                         authenticationRequest.getPassword()
                 )
         );
-
         User user = usersRepository.findByEmailAndUserIsActive(authenticationRequest.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found."));
         Set<Integer> userRoles = new HashSet<>();

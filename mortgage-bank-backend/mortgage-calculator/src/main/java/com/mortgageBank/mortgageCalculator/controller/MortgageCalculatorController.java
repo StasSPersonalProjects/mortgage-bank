@@ -14,15 +14,19 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class MortgageCalculatorController {
 
+    private final MortgageCalculatorService mortgageCalculatorService;
+
     @Autowired
-    private MortgageCalculatorService mortgageCalculatorService;
+    public MortgageCalculatorController (MortgageCalculatorService mortgageCalculatorService) {
+        this.mortgageCalculatorService = mortgageCalculatorService;
+    }
 
     @PostMapping("/calculate/payment_margin")
     public ResponseEntity<PaymentAndMargin> calculateMonthlyPaymentGetMargin(
             @RequestHeader("Authorization") String token,
             @RequestBody @Valid LoanRequestDto loanRequestDto
     ) {
-        log.debug(
+        log.info(
                 "Received request for calculating payment and margin for loan of type {} " +
                         "of amount {} with interest rate {} and duration {} months",
                 loanRequestDto.getLoanType().name(),

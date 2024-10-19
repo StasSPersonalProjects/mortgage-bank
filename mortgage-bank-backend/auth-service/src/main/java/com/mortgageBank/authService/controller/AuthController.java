@@ -66,6 +66,7 @@ public class AuthController {
             @RequestBody @Valid AuthenticationRequest authenticationRequest
     ) {
         log.info("Received request to authenticate a user {}", authenticationRequest.getUsername());
+        log.debug("dto {}", authenticationRequest);
         return ResponseEntity.ok().body(authService.authenticateEmployee(authenticationRequest));
     }
 

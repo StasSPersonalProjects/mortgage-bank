@@ -7,10 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mortgage-requests-storage" />
         <module name="config-server" />
-        <module name="otp-service" />
         <module name="auth-service" />
+        <module name="mortgage-requests-id-generator" />
+        <module name="mortgage-requests-storage" />
+        <module name="otp-service" />
         <module name="mortgage-margins-config" />
         <module name="mortgage-calculator" />
       </profile>
@@ -22,6 +23,7 @@
       <module name="config-server" options="-parameters" />
       <module name="mortgage-calculator" options="-parameters" />
       <module name="mortgage-margins-config" options="-parameters" />
+      <module name="mortgage-requests-id-generator" options="-parameters" />
       <module name="mortgage-requests-storage" options="-parameters" />
       <module name="otp-service" options="-parameters" />
     </option>

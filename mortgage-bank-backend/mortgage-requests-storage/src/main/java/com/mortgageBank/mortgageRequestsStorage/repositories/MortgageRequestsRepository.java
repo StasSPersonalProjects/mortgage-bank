@@ -1,8 +1,8 @@
 package com.mortgageBank.mortgageRequestsStorage.repositories;
 
-import com.mortgageBank.mortgageRequestsStorage.model.entities.MortgageRequest;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.mortgageBank.mortgageRequestsStorage.model.documents.MortgageRequest;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface MortgageRequestsRepository extends JpaRepository<MortgageRequest, Long> {
+public interface MortgageRequestsRepository extends MongoRepository<MortgageRequest, Long> {
 
 }

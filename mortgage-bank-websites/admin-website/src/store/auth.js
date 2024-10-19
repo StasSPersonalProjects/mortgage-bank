@@ -42,6 +42,9 @@ const authSlice = createSlice({
       state.roles = action.payload.roles;
       state.isAuthenticated = true;
     },
+    clear() {
+      sessionStorage.clear();
+    },
     rehydrate(state, action) {
       state.token = action.payload.access_token;
       state.isAuthenticated = true;

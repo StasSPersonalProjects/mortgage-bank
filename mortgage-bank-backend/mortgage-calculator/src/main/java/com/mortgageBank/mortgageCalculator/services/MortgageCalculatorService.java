@@ -43,6 +43,7 @@ public class MortgageCalculatorService {
                         .queryParam("duration", loanRequest.getLoanTermInMonths())
                         .queryParam("interest_rate", loanRequest.getAnnualInterestRate())
                         .build())
+                // TODO - check
 //                .header("Authorization", token)
                 .retrieve()
                 .bodyToMono(Double.class)

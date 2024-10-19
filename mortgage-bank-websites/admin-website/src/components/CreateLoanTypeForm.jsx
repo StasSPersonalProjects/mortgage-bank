@@ -69,15 +69,17 @@ export default function CreateLoanTypeForm({ availableLoanTypes }) {
       });
 
       if (!response.ok) {
+        // TODO
         throw new Error("");
       }
 
       setSelectedLoanType("");
       setZeroMarginRates(initialZeroMarginRates);
       const responseData = await response.json();
-
+      // TODO
       console.log(responseData);
     } catch (error) {
+      // TOOD
       console.error(error);
     }
   };
@@ -108,7 +110,7 @@ export default function CreateLoanTypeForm({ availableLoanTypes }) {
         {sortedRates.map(([key, value]) => (
           <div key={key} className={classes["rate-input-container"]}>
             <label className={classes["rate-label"]} htmlFor={key}>
-              {key}:{" "}
+              {`${key} months`}:{" "}
             </label>
             <input
               className={classes["rate-input"]}
