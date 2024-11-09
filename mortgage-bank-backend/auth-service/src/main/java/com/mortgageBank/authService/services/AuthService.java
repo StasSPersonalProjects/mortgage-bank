@@ -34,6 +34,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final String initialAdminPassword;
     private final String initialUnderwriterPassword;
+    private final String initialConsultantPassword;
 
     private static final Map<String, Integer> ROLES_CODES_MAP = Map.of(
             "ADMIN", 6875,
@@ -49,7 +50,8 @@ public class AuthService {
                        AuthenticationManager authenticationManager,
                        PasswordEncoder passwordEncoder,
                        @Value("${initial.admin.password}") String initialAdminPassword,
-                       @Value("${initial.underwriter.password}") String initialUnderwriterPassword) {
+                       @Value("${initial.underwriter.password}") String initialUnderwriterPassword,
+                       @Value("${initial.consultant.password}") String initialConsultantPassword) {
         this.usersRepository = usersRepository;
         this.tokensRepository = tokensRepository;
         this.jwtService = jwtService;
@@ -57,6 +59,7 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
         this.initialAdminPassword = initialAdminPassword;
         this.initialUnderwriterPassword = initialUnderwriterPassword;
+        this.initialConsultantPassword = initialConsultantPassword;
     }
 
     @Transactional
@@ -68,6 +71,8 @@ public class AuthService {
                 newUser.setPassword(passwordEncoder.encode(initialUnderwriterPassword));
             } else if (registrationRequest.getRoles().contains(Role.ADMIN)) {
                 newUser.setPassword(passwordEncoder.encode(initialAdminPassword));
+            } else if (registrationRequest.getRoles().contains(Role.CONSULTANT)) {
+                newUser.setPassword(passwordEncoder.encode(initialConsultantPassword));
             }
             User createdEmployee = usersRepository.save(newUser);
             String newEmployeeUsername = String.format("u%s%s%d",

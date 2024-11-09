@@ -21,12 +21,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.mortgageBank.authService.model.enums.Permission.*;
-import static com.mortgageBank.authService.model.enums.Role.ADMIN;
+import static com.mortgageBank.authService.model.enums.Role.*;
 import static org.springframework.http.HttpMethod.*;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
+
+    private final String[] CORS_ALLOWED_SOURCES = {
+            "http://localhost:5176",
+            "http://localhost:5175"
+    };
 
     private final String[] PERMIT_ALL_LIST = {
             "/auth/employees/authenticate"
@@ -55,6 +60,14 @@ public class SecurityConfiguration {
             "/auth/employee-management/change_roles"
     };
 
+    private final String[] CONSULTANT_UNDERWRITER_ACCESS_LIST = {
+            "/auth/common/find/all/**"
+    };
+
+    private final String[] CONSULTANT_UNDERWRITER_READ_LIST = {
+            "/auth/common/find/all/**"
+    };
+
     @Autowired
     private AuthenticationProvider authenticationProvider;
     @Autowired
@@ -77,9 +90,13 @@ public class SecurityConfiguration {
                     request.requestMatchers(POST, ADMIN_CREATE_LIST)
                             .hasAuthority(ADMIN_CREATE.name());
                     request.requestMatchers(GET, ADMIN_READ_LIST)
-                            .hasAnyAuthority(ADMIN_READ.name());
+                            .hasAuthority(ADMIN_READ.name());
                     request.requestMatchers(PATCH, ADMIN_PATCH_LIST)
-                            .hasAnyAuthority(ADMIN_UPDATE.name());
+                            .hasAuthority(ADMIN_UPDATE.name());
+                    request.requestMatchers(CONSULTANT_UNDERWRITER_ACCESS_LIST)
+                            .hasAnyRole(CONSULTANT.name(), UNDERWRITER.name());
+                    request.requestMatchers(GET, CONSULTANT_UNDERWRITER_READ_LIST)
+                            .hasAnyAuthority(CONSULTANT_READ.name(), UNDERWRITER_READ.name());
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
@@ -100,7 +117,7 @@ public class SecurityConfiguration {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5176"));
+        configuration.setAllowedOrigins(List.of(CORS_ALLOWED_SOURCES));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE"));
         configuration.setAllowedHeaders(List.of("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

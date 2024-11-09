@@ -1,0 +1,65 @@
+.mortgage-request-form {
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: 1px solid #307e6c;
+}
+
+.mortgage-request-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.mortgage-request-header button {
+  height: 3.5vh;
+}
+
+.owner-change-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.owner-change-form input {
+  margin-bottom: 8px;
+  max-width: 200px;
+  font-family: "Quicksand", sans-serif;
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+}
+
+.owner-change-form input:focus {
+  outline: none;
+}
+
+.mortgage-request-form button {
+  font-family: "Quicksand", sans-serif;
+  width: 10%;
+  padding: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  background: linear-gradient(180deg, #307e6c, #2b996d);
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.mortgage-request-form button:hover {
+  background: linear-gradient(180deg, #2b996d, #307e6c);
+}
+
+.mortgage-request-form button:active {
+  background: linear-gradient(180deg, #307e6c, #2b996d);
+}
+
+.owner-section {
+  display: flex;
+  padding: 5px;
+}

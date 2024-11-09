@@ -4,5 +4,6 @@ public enum EmploymentType {
 
     HIRED_EMPLOYEE,
     BUSINESS_OWNER,
-    COMPANY_OWNER
+    COMPANY_OWNER,
+    UNEMPLOYED
 }

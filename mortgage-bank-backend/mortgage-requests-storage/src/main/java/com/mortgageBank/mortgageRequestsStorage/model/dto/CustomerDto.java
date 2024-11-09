@@ -1,5 +1,6 @@
 package com.mortgageBank.mortgageRequestsStorage.model.dto;
 
+import com.mortgageBank.mortgageRequestsStorage.model.documents.Customer;
 import com.mortgageBank.mortgageRequestsStorage.model.enums.MaritalStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,4 +28,34 @@ public class CustomerDto {
     private List<SpendingDto> spendings;
     private List<ExtraIncomeDto> extraIncomes;
     private String extraInfo;
+
+    public static CustomerDto of(Customer customer) {
+        return CustomerDto
+                .builder()
+                .identityCardNumber(customer.getIdentityCardNumber())
+                .firstName(customer.getFirstName())
+                .lastName(customer.getLastName())
+                .birthDate(customer.getBirthDate())
+                .phoneNumber(customer.getPhoneNumber())
+                .email(customer.getEmail())
+                .maritalStatus(customer.getMaritalStatus())
+                .childrenUnderAge21(customer.getChildrenUnderAge21())
+                .employmentData(customer
+                        .getEmploymentData()
+                        .stream()
+                        .map(CustomersEmploymentDataDto::of)
+                        .toList())
+                .spendings(customer
+                        .getSpendings()
+                        .stream()
+                        .map(SpendingDto::of)
+                        .toList())
+                .extraIncomes(customer
+                        .getExtraIncomes()
+                        .stream()
+                        .map(ExtraIncomeDto::of)
+                        .toList())
+                .extraInfo(customer.getExtraInfo())
+                .build();
+    }
 }

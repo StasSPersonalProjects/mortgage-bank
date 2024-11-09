@@ -1,0 +1,8 @@
+.work-tabs-container {
+  display: flex;
+  /* position: fixed;
+  z-index: 1000;
+  background-color: #27312e;
+  width: calc(100% - 19vw);
+  border-bottom: 1px solid #307e6c; */
+}

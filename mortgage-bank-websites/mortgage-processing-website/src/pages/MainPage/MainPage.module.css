@@ -1,0 +1,168 @@
+.main-page {
+  display: flex;
+  flex-direction: row;
+  height: 80vh;
+}
+
+.work-menu {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 16%;
+  margin-right: 20px;
+}
+
+.menu {
+  height: 35%;
+  border: 1px solid #307e6c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-form {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-options {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.search-options label {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  padding-right: 5px;
+}
+
+.search-options select {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  height: auto;
+}
+
+.search-options select:focus {
+  outline: none;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input input {
+  font-family: 'Quicksand', sans-serif;
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+}
+
+.search-input input:focus {
+  outline: none;
+}
+
+.search-input button {
+  font-family: 'Quicksand', sans-serif;
+  width: 40%;
+  padding: 5px;
+  padding-left: 7px;
+  padding-right: 7px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  background: linear-gradient(180deg, #307e6c, #2b996d);
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.search-input button:hover {
+  background: linear-gradient(180deg, #2b996d, #307e6c);
+}
+
+.search-input button:active {
+  background: linear-gradient(180deg, #307e6c, #2b996d);
+}
+
+.new-request-btn {
+  font-family: 'Quicksand', sans-serif;
+  margin-top: 30px;
+  width: 65%;
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  background: linear-gradient(180deg, #307e6c, #2b996d);
+  transition: background-color 0.3s ease;
+}
+
+.new-request-btn:hover {
+  background: linear-gradient(180deg, #2b996d, #307e6c);
+}
+
+.new-request-btn:active {
+  background: linear-gradient(180deg, #307e6c, #2b996d);
+}
+
+.pending-requests {
+  flex: 1;
+  border-bottom: 1px solid #307e6c;
+  border-left: 1px solid #307e6c;
+  border-right: 1px solid #307e6c;
+  overflow-y: auto;
+  position: relative;
+}
+
+.pending-requests img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 40px;
+  width: 40px;
+}
+
+.tabs-container {
+  display: flex;
+  flex: none;
+}
+
+.tab-content {
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.work-field {
+  border: 1px solid #307e6c;
+  width: 84%;
+  margin-right: 20px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.work-field::-webkit-scrollbar {
+  width: 12px;
+}
+
+.work-field::-webkit-scrollbar-track {
+  background: #64917f;
+  border-radius: 5px;
+}
+
+.work-field::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2b996d, #307e6c);
+  border-radius: 5px;
+}
+
+.work-field::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #1d694b, #1e4f43);
+  cursor: pointer;
+}

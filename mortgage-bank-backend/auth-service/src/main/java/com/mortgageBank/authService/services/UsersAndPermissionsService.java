@@ -1,5 +1,6 @@
 package com.mortgageBank.authService.services;
 
+import com.mortgageBank.authService.model.dto.AvailableUserDto;
 import com.mortgageBank.authService.model.dto.EmployeeDataDto;
 import com.mortgageBank.authService.model.entities.User;
 import com.mortgageBank.authService.model.enums.Role;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.security.Principal;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -46,6 +48,20 @@ public class UsersAndPermissionsService {
                             "No employee found when searching for " +
                                     value + " by " + searchByStrings.get(searchBy));
                 });
+    }
+
+    @Transactional(readOnly = true)
+    public Set<AvailableUserDto> getUsersByRole(String role) {
+        List<String> requestedUsers = usersRepository.findAvailableUsersByRole(role)
+                .orElseThrow(() -> new RuntimeException("No available users"));
+        return requestedUsers
+                .stream()
+                .map(u ->
+                        AvailableUserDto
+                                .builder()
+                                .name(u)
+                                .build())
+                .collect(Collectors.toSet());
     }
 
     @Transactional

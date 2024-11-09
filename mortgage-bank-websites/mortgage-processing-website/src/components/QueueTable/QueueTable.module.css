@@ -1,0 +1,22 @@
+.requests-table {
+  width: 100%;
+}
+
+.requests-table-row td {
+  padding: 0;
+  cursor: pointer;
+  border: 1px solid #307e6c;
+  font-size: 13px;
+}
+
+.requests-table-row td:nth-child(1) {
+  width: 32%;
+}
+
+.requests-table-row td:nth-child(2) {
+  width: 18%;
+}
+
+.requests-table-row td:nth-child(3) {
+  width: 50%;
+}

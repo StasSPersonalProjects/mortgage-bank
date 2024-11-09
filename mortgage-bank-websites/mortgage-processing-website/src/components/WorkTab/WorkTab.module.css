@@ -1,0 +1,49 @@
+.work-tab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #307e6c;
+  border-top: none;
+  font-size: 13px;
+  text-align: center;
+  width: 12vw;
+  height: 2.5vh;
+}
+
+.active {
+  border-bottom: 1px solid #307e6c;
+  background: linear-gradient(180deg, #307e6c, #2b996d);
+}
+
+.work-tab p {
+  margin: 0;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.work-tab button {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 10px;
+  cursor: pointer;
+  background: linear-gradient(180deg, #18704a, #2e987f);
+  transition: background-color 0.3s ease;
+  color: #fff;
+  margin-right: 5px;
+  border: 0.8px solid #ffffff;
+  border-radius: 5px;
+  padding: 0;
+  padding-right: 3px;
+  padding-left: 3px;
+  height: 80%;
+}
+
+.work-tab button:hover {
+  background: linear-gradient(180deg, #2e987f, #18704a);
+  transition: background-color 0.3s ease;
+}
+
+.work-tab button:active {
+  background: linear-gradient(180deg, #18704a, #2e987f);
+  transition: background-color 0.3s ease;
+}

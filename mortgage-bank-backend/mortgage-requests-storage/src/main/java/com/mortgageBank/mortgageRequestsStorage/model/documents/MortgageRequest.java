@@ -2,6 +2,7 @@ package com.mortgageBank.mortgageRequestsStorage.model.documents;
 
 import com.mortgageBank.mortgageRequestsStorage.model.dto.MortgageRequestDto;
 import com.mortgageBank.mortgageRequestsStorage.model.enums.MortgageStatus;
+import com.mortgageBank.mortgageRequestsStorage.model.enums.QueueType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class MortgageRequest {
 
     @Id
     private long id;
-    private LocalDate creationDate;
+    private LocalDateTime creationTime;
     private String owner;
     private Set<Customer> borrowers;
     private Set<Customer> guarantees;
@@ -32,13 +33,15 @@ public class MortgageRequest {
     private String customerDocumentsDirectory;
     private boolean isPulled;
     private String pulledBy;
-    private Decision decision;
+    private Set<Decision> decisions;
+    private LocalDateTime transferTime;
+    private QueueType queueType;
 
     public static MortgageRequest of(MortgageRequestDto dto) {
         return MortgageRequest
                 .builder()
-                .creationDate(dto.getCreationDate())
-                .owner(null)
+                .creationTime(dto.getCreationTime())
+                .owner(dto.getOwner())
                 .borrowers(dto.getBorrowers()
                         .stream()
                         .map(Customer::of)
@@ -52,7 +55,13 @@ public class MortgageRequest {
                 .customerDocumentsDirectory(null)
                 .isPulled(false)
                 .pulledBy(null)
-                .decision(null)
+                .decisions(dto
+                        .getDecisions()
+                        .stream()
+                        .map(Decision::of)
+                        .collect(Collectors.toSet()))
+                .transferTime(dto.getTransferTime())
+                .queueType(QueueType.INITIAL)
                 .build();
     }
 }

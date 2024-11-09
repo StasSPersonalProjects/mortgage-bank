@@ -1,0 +1,13 @@
+.queue-tab {
+  cursor: pointer;
+  border: 1px solid #307e6c;
+  border-top: none;
+  font-size: 12px;
+  text-align: center;
+  flex: 1;
+}
+
+.active {
+  border-bottom: none;
+  background: linear-gradient(180deg, #307e6c, #2b996d);
+}

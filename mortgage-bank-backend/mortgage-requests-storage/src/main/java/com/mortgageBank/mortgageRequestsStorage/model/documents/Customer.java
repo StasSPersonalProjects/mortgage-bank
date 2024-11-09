@@ -58,5 +58,4 @@ public class Customer {
                 .extraInfo(dto.getExtraInfo())
                 .build();
     }
-
 }

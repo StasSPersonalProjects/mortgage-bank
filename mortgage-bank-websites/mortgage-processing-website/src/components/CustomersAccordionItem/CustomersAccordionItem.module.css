@@ -1,0 +1,166 @@
+.customer-data-accordion {
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  display: flex;
+}
+
+.customer-personal-data {
+  margin-right: 4vw;
+  width: 23vw;
+}
+
+.label-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.customer-personal-data label,
+.customer-income-data label {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.customer-personal-data input,
+.customer-income-data input {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 5px;
+  width: 50%;
+}
+
+.spending-label-input {
+  width: auto;
+}
+
+.customer-spendings-data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.spending-label-input label {
+  font-size: 14px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.spending-label-input input {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  width: auto;
+}
+
+.customer-personal-data input:disabled {
+  background-color: #b4b2b2;
+  color: black;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.income-header,
+.spendings-header,
+.extra-income-header {
+  width: 100%;
+  font-size: 14px;
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spendings-header button,
+.income-header button,
+.extra-income-header button {
+  width: auto;
+  height: 3.9vh;
+}
+
+.income-outcome,
+.spendings,
+.extra-incomes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #307e6c;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.remove-income-btn,
+.remove-spending-btn {
+  height: 4vh;
+}
+
+.customer-income-data {
+  font-size: 14px;
+  margin-right: 4vw;
+  width: 23vw;
+}
+
+.customer-extra-income-data {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.extra-income-label-input label {
+  font-size: 14px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.extra-income-label-input input {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  width: auto;
+}
+
+.customer-extra-info {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.customer-extra-info label {
+  margin-right: 15px;
+}
+
+.customer-extra-info textarea {
+  resize: none;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 3px;
+  width: 35vw;
+  height: 6vh;
+}

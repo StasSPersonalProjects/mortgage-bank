@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 public interface UsersRepository extends JpaRepository<User, Long> {
@@ -20,6 +21,14 @@ public interface UsersRepository extends JpaRepository<User, Long> {
     Optional<User> findByFullName(String fullName);
 
     Optional<User> findByIdCardNumber(String idCardNumber);
+
+    @Query(value = "SELECT u.full_name FROM users u " +
+            "WHERE :role = ANY(u.roles) " +
+            "AND u.is_enabled = TRUE " +
+            "AND u.is_account_non_locked = TRUE " +
+            "AND u.is_account_non_expired = TRUE",
+            nativeQuery = true)
+    Optional<List<String>> findAvailableUsersByRole(@Param("role") String role);
 
     @Modifying
     @Query(value = "UPDATE users SET last_login = :lastLogin WHERE id = :id", nativeQuery = true)
