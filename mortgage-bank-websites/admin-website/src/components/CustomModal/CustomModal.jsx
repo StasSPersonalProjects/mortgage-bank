@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createPortal } from 'react-dom';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
-import classes from './styles/CustomModal.module.css';
+import classes from './CustomModal.module.css';
 
 const CustomModal = forwardRef(function CustomModal({ message }, ref) {
 

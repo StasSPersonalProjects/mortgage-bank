@@ -1,11 +1,11 @@
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import AuthDto from "../models/AuthDto";
-import classes from "./styles/AuthForm.module.css";
-import { authActions } from "../store/auth";
-import { AUTHENTICATION_URL } from "../utils/urls";
+import AuthDto from "../../models/AuthDto";
+import classes from "./AuthForm.module.css";
+import { authActions } from "../../store/auth";
+import { AUTHENTICATION_URL } from "../../utils/urls";
 import { useNavigate } from "react-router-dom";
-import CustomModal from "./CustomModal";
+import CustomModal from "../CustomModal/CustomModal";
 
 export default function AuthForm() {
   const dispatch = useDispatch();

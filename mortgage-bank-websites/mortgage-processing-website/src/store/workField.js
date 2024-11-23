@@ -54,6 +54,30 @@ const workFieldSlice = createSlice({
       );
       if (activeTabIndex === -1) return;
       _.set(state.workFieldTabs[activeTabIndex].data, path, value);
+      let key = path;
+      Object.assign(state.workFieldTabs[activeTabIndex].updatedFields, {
+        [key]: value,
+      });
+    },
+    addOrRemoveMortgageRequestData(state, action) {
+      const { type, value, path } = action.payload;
+      // console.log(type)
+      // console.log(value)
+      // console.log(path)
+      const activeTabIndex = state.workFieldTabs.findIndex(
+        (tab) => tab.label === state.active
+      );
+      if (activeTabIndex === -1) return;
+      const dataToUpdate = _.get(
+        state.workFieldTabs[activeTabIndex].data,
+        path
+      );
+      if (type === "ADD") {
+        dataToUpdate.push(value);
+      } else if (type === "REMOVE") {
+        const newData = dataToUpdate.filter((_, index) => index !== value);
+        _.set(state.workFieldTabs[activeTabIndex].data, path, newData);
+      }
     },
   },
 });

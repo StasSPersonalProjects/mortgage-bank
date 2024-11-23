@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import AccordionItem from "../components/AccordionItem";
-import CreateLoanTypeForm from "../components/CreateLoanTypeForm";
-import classes from "./styles/ManageMarginsPage.module.css";
+import AccordionItem from "../../components/AccordionItem/AccordionItem";
+import SetZeroMarginRatesForm from "../../components/SetZeroMarginRatesForm/SetZeroMarginRatesForm";
+import classes from "./ManageMarginsPage.module.css";
 import { useSelector } from "react-redux";
-import { GET_AVAILABLE_LOAN_TYPES_URL } from "../utils/urls";
+import { GET_AVAILABLE_LOAN_TYPES_URL } from "../../utils/urls";
 
 export default function ManageMarginsPage() {
   const token = useSelector((state) => state.auth.token);
@@ -37,8 +37,8 @@ export default function ManageMarginsPage() {
   return (
     <main className={classes.main}>
       <section>
-        <AccordionItem title="Create Loan Type">
-          <CreateLoanTypeForm availableLoanTypes={availableLoanTypes} />
+        <AccordionItem title="Set zero-margin rates">
+          <SetZeroMarginRatesForm availableLoanTypes={availableLoanTypes} />
         </AccordionItem>
       </section>
       <section>

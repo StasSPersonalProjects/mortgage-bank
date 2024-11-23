@@ -1,0 +1,72 @@
+.loans-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.loans-table thead tr th {
+  font-size: 13px;
+  font-weight: 400;
+  padding: 3px;
+  vertical-align: top;
+  border: 1px solid #307e6c;
+  text-align: center;
+}
+
+.loans-table tbody tr td:nth-child(1) select,
+.loans-table thead tr th:nth-child(1) {
+  width: 14rem;
+}
+
+.loans-table tbody tr td:nth-child(2) input,
+.loans-table thead tr th:nth-child(2) {
+  width: 6rem;
+}
+
+.loans-table tbody tr td:nth-child(3) input,
+.loans-table thead tr th:nth-child(3) {
+  width: 4rem;
+}
+
+.loans-table tbody tr td:nth-child(4) input,
+.loans-table thead tr th:nth-child(4) {
+  width: 4rem;
+}
+
+.loans-table thead tr th:nth-child(5) {
+  width: 5rem;
+}
+
+.loans-table thead tr th:nth-child(6) {
+  width: 4rem;
+}
+
+.loans-table tbody tr td:nth-child(5),
+.loans-table tbody tr td:nth-child(6) {
+  text-align: center;
+}
+
+.loans-table tbody tr td {
+  font-size: 14px;
+  padding: 4px 6px;
+  border: 1px solid #307e6c;
+}
+
+.loans-table tbody tr td input,
+.loans-table tbody tr td select {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 3px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+}
+
+.loans-table tbody tr td:last-child {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.loans-table tbody tr td button {
+  width: 5rem;
+}

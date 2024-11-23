@@ -37,6 +37,18 @@ public class MortgageRequestsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @PutMapping("/add_field")
+    public ResponseEntity<String> addFieldToExistingRequest(
+            @RequestParam("request_id") long requestId,
+            @RequestParam("field") String field,
+            @RequestBody Object element
+    ) {
+        log.info("received request to add new element to existing field {} of mortgage request #{}",
+                field, requestId);
+        mortgageRequestsService.addFieldToExistingRequest(requestId, field, element);
+        return ResponseEntity.ok("Modified successfully");
+    }
+
     @GetMapping("/pending")
     public ResponseEntity<List<MortgageRequestSummary>> getRequestsByQueue(
             @RequestParam("queue_type")QueueType queueType
@@ -52,7 +64,7 @@ public class MortgageRequestsController {
     ) {
         log.info("received http request to search requests by {} for {}", searchParam, searchValue);
         return searchParam.equals("idCardNumber") ?
-                ResponseEntity.ok(mortgageRequestsService.findRequestsbyIdCard(searchValue)) :
+                ResponseEntity.ok(mortgageRequestsService.findRequestsbyIdCard(String.valueOf(searchValue))) :
                 ResponseEntity.ok(mortgageRequestsService.findRequestbyMortgageRequestId(searchValue));
     }
 

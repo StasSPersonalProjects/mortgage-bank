@@ -34,6 +34,7 @@ export const emptyMortgageRequest = {
     propertyStatus: "",
     price: 0,
     value: 0,
+    existingLeinAmount: 0,
   },
   mortgageComposition: {
     loans: [],

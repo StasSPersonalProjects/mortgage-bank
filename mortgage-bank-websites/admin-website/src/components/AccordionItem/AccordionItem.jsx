@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import classes from "./styles/AccordionItem.module.css";
+import classes from "./AccordionItem.module.css";
 
 export default function AccordionItem({ children, title }) {
   const [isOpen, setIsOpen] = useState(false);

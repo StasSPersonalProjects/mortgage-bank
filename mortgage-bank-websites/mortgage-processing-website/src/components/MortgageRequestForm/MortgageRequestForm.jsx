@@ -9,6 +9,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CustomersAccordionItem from "../CustomersAccordionItem/CustomersAccordionItem";
 import { workFieldActions } from "../../store/workField";
+import RealEstateMortgageAccordionItem from "../RealEstateMortgageAccordionItem/RealEstateMortgageAccordionItem";
 
 export default function MortgageRequestForm({ data }) {
   const token = useSelector((state) => state.auth.token);
@@ -116,6 +117,14 @@ export default function MortgageRequestForm({ data }) {
           dataField={"guarantees"}
         />
       </AccordionItem>
+      <AccordionItem title={"Real estate and mortgage"}>
+        <RealEstateMortgageAccordionItem
+          data={data}
+          dataField={"realEstateProperties"}
+        />
+      </AccordionItem>
+      <AccordionItem title={"Documents"}></AccordionItem>
+      <AccordionItem title={"Decisions"}></AccordionItem>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import HomePageComponent from "../components/HomePageComponent";
-import classes from "./styles/HomePage.module.css";
-import { GET_ACTIVE_EMPLOYEES_URL } from "../utils/urls";
+import HomePageComponent from "../../components/HomePageComponent/HomePageComponent";
+import classes from "./HomePage.module.css";
+import { GET_ACTIVE_EMPLOYEES_URL } from "../../utils/urls";
 
 export default function HomePage() {
   const token = useSelector((state) => state.auth.token);

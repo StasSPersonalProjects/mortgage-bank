@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import AccordionItem from "../components/AccordionItem";
-import ChangeEmployeeData from "../components/ChangeEmplyeeData";
-import RegisterNewUserForm from "../components/RegisterNewUserForm";
-import classes from "./styles/ManageUsersPage.module.css";
+import AccordionItem from "../../components/AccordionItem/AccordionItem";
+import ChangeEmployeeData from "../../components/ChangeEmployeeData/ChangeEmplyeeData"
+import RegisterNewUserForm from "../../components/RegisterNewUserForm/RegisterNewUserForm";
+import classes from "./ManageUsersPage.module.css";
 import { useState, useEffect } from "react";
-import { GET_AVAILABLE_ROLES_URL } from "../utils/urls";
+import { GET_AVAILABLE_ROLES_URL } from "../../utils/urls";
 
 export default function ManageUsersPage() {
   const [availableRoles, setAvailableRoles] = useState([]);

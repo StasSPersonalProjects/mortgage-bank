@@ -14,20 +14,41 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RealEstateProperty {
 
-    private String location;
     private PropertyType propertyType;
     private PropertyStatus propertyStatus;
     private int price;
     private int value;
+    private int existingLeinAmount;
+    private long securityNumber;
+    private String city;
+    private String street;
+    private int houseNumber;
+    private int floor;
+    private int appartment;
+    private long block;
+    private long plot;
+    private long subPlot;
+    private MortgageComposition mortgageComposition;
 
     public static RealEstateProperty of(RealEstatePropertyDto dto) {
         return RealEstateProperty
                 .builder()
-                .location(dto.getLocation())
                 .propertyType(dto.getPropertyType())
                 .propertyStatus(dto.getPropertyStatus())
                 .price(dto.getPrice())
                 .value(dto.getValue())
+                .existingLeinAmount(dto.getExistingLeinAmount())
+                .securityNumber(dto.getSecurityNumber())
+                .city(dto.getCity())
+                .street(dto.getStreet())
+                .houseNumber(dto.getHouseNumber())
+                .floor(dto.getFloor())
+                .appartment(dto.getAppartment())
+                .block(dto.getBlock())
+                .plot(dto.getPlot())
+                .subPlot(dto.getSubPlot())
+                .mortgageComposition(MortgageComposition
+                        .of(dto.getMortgageComposition()))
                 .build();
     }
 }

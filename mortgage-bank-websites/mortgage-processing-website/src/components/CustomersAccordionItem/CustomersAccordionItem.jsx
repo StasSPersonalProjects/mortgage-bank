@@ -1,45 +1,48 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useDispatch } from "react-redux";
 import AccordionItem from "../AccordionItem/AccordionItem";
 import { workFieldActions } from "../../store/workField";
 import classes from "./CustomersAccordionItem.module.css";
+import { emptyEmploymentData } from "../../models/EmptyEmploymentData";
+import { emptyCustomerData } from "../../models/EmptyCustomerData";
+import { ADD_MORTGAGE_REQUEST_FIELD_URL } from "../../utils/urls";
+
+const maritalStatusValues = {
+  SINGLE: "Single",
+  MARRIED: "Married",
+  DIVORCED: "Divorced",
+  WIDOWER: "Widower",
+};
+
+const employmentTypeValues = {
+  HIRED_EMPLOYEE: "Hired employee",
+  BUSINESS_OWNER: "Business owner",
+  COMPANY_OWNER: "Company owner",
+  UNEMPLOYED: "Unemployed",
+};
+
+const spendingValues = {
+  RENT: "Rent",
+  CHILD_SUPPORT: "Child support",
+  LOAN: "Loan",
+  MORTGAGE: "Mortgage",
+  OTHER: "Other",
+};
+
+const extraIncomeValues = {
+  RENT: "Rent",
+  CHILD_SUPPORT: "Child support",
+  ALLOWANCE: "Allowance",
+  DISABILITY_ALLOWANCE: "Disability allowance",
+  PENSION: "Pension",
+  OTHER: "Other",
+};
 
 export default function CustomersAccordionItem({ title, data, dataField }) {
-  const maritalStatusValues = {
-    SINGLE: "Single",
-    MARRIED: "Married",
-    DIVORCED: "Divorced",
-    WIDOWER: "Widower",
-  };
-
-  const employmentTypeValues = {
-    HIRED_EMPLOYEE: "Hired employee",
-    BUSINESS_OWNER: "Business owner",
-    COMPANY_OWNER: "Company owner",
-    UNEMPLOYED: "Unemployed",
-  };
-
-  const spendingValues = {
-    RENT: "Rent",
-    CHILD_SUPPORT: "Child support",
-    LOAN: "Loan",
-    MORTGAGE: "Mortgage",
-    OTHER: "Other",
-  };
-
-  const extraIncomeValues = {
-    RENT: "Rent",
-    CHILD_SUPPORT: "Child support",
-    ALLOWANCE: "Allowance",
-    DISABILITY_ALLOWANCE: "Disability allowance",
-    PENSION: "Pension",
-    OTHER: "Other",
-  };
-
   const dispatch = useDispatch();
 
-  const handleMortgageRequestDataUpdate = (event, path) => {
-    const value = event.target.value;
+  const handleMortgageRequestDataUpdate = (value, path) => {
     dispatch(
       workFieldActions.updateMortgageRequestCustomerData({
         path,
@@ -48,16 +51,60 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
     );
   };
 
+  const handleAddRemoveValue = async (type, value, path, id) => {
+    console.log(type);
+    console.log(value);
+    console.log(path);
+    console.log(id);
+    dispatch(
+      workFieldActions.addOrRemoveMortgageRequestData({ type, value, path })
+    );
+
+    try {
+      const queryParams = new URLSearchParams({
+        request_id: id,
+        field: path,
+      });
+
+      const fullURL = `${ADD_MORTGAGE_REQUEST_FIELD_URL}?${queryParams.toString()}`;
+
+      const response = await fetch(fullURL, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(value),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <AccordionItem title={title}>
       <div className={classes["buttons"]}>
-        <button>Add +</button>
-        <button>Save</button>
+        <button
+          onClick={() =>
+            handleAddRemoveValue(
+              "ADD",
+              { ...emptyCustomerData },
+              dataField,
+              data.id
+            )
+          }
+        >
+          Add +
+        </button>
       </div>
-      {data[dataField].map((b, index) => (
+      {data[dataField].map((c, index) => (
         <AccordionItem
-          key={b.identityCardNumber}
-          title={`${b.firstName} ${b.lastName}`}
+          key={c.identityCardNumber}
+          title={`${c.firstName} ${c.lastName}`}
         >
           <div className={classes["customer-data-accordion"]}>
             <div className={classes["customer-personal-data"]}>
@@ -66,13 +113,12 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                 <input
                   type="text"
                   id="id-card-number"
-                  value={b.identityCardNumber}
-                  disabled={b.identityCardNumber ? true : false}
-                  onChange={
-                    !b.identityCardNumber
+                  defaultValue={c.identityCardNumber}
+                  onBlur={
+                    !c.identityCardNumber
                       ? (e) =>
                           handleMortgageRequestDataUpdate(
-                            e,
+                            e.target.value,
                             `${dataField}[${index}].identityCardNumber`
                           )
                       : null
@@ -84,10 +130,10 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                 <input
                   type="text"
                   id={`first-name-${index}`}
-                  value={b.firstName}
-                  onChange={(e) =>
+                  defaultValue={c.firstName}
+                  onBlur={(e) =>
                     handleMortgageRequestDataUpdate(
-                      e,
+                      e.target.value,
                       `${dataField}[${index}].firstName`
                     )
                   }
@@ -98,10 +144,10 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                 <input
                   type="text"
                   id={`last-name-${index}`}
-                  value={b.lastName}
-                  onChange={(e) =>
+                  defaultValue={c.lastName}
+                  onBlur={(e) =>
                     handleMortgageRequestDataUpdate(
-                      e,
+                      e.target.value,
                       `${dataField}[${index}].lastName`
                     )
                   }
@@ -112,10 +158,10 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                 <input
                   type="date"
                   id="birth-date"
-                  value={b.birthDate}
-                  onChange={(e) =>
+                  defaultValue={c.birthDate}
+                  onBlur={(e) =>
                     handleMortgageRequestDataUpdate(
-                      e,
+                      e.target.value,
                       `${dataField}[${index}].birthDate`
                     )
                   }
@@ -128,10 +174,10 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                 <input
                   type="text"
                   id="phone-number"
-                  value={b.phoneNumber}
-                  onChange={(e) =>
+                  defaultValue={c.phoneNumber}
+                  onBlur={(e) =>
                     handleMortgageRequestDataUpdate(
-                      e,
+                      e.target.value,
                       `${dataField}[${index}].phoneNumber`
                     )
                   }
@@ -142,10 +188,10 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                 <input
                   type="text"
                   id="email-address"
-                  value={b.email}
-                  onChange={(e) =>
+                  defaultValue={c.email}
+                  onBlur={(e) =>
                     handleMortgageRequestDataUpdate(
-                      e,
+                      e.target.value,
                       `${dataField}[${index}].email`
                     )
                   }
@@ -156,13 +202,16 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                 <input
                   type="text"
                   id="marital-status"
-                  value={maritalStatusValues[b.maritalStatus]}
-                  onChange={(e) =>
+                  defaultValue={maritalStatusValues[c.maritalStatus]}
+                  onBlur={(e) => {
+                    let value = Object.keys(maritalStatusValues).find(
+                      (key) => maritalStatusValues[key] === e.target.value
+                    );
                     handleMortgageRequestDataUpdate(
-                      e,
+                      value,
                       `${dataField}[${index}].maritalStatus`
-                    )
-                  }
+                    );
+                  }}
                   list="marital-status-values"
                 />
                 <datalist id="marital-status-values">
@@ -178,10 +227,10 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                 <input
                   type="number"
                   id="children-under-21"
-                  value={b.childrenUnderAge21}
-                  onChange={(e) =>
+                  defaultValue={c.childrenUnderAge21}
+                  onBlur={(e) =>
                     handleMortgageRequestDataUpdate(
-                      e,
+                      e.target.value,
                       `${dataField}[${index}].childrenUnderAge21`
                     )
                   }
@@ -191,9 +240,20 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
           </div>
           <div className={classes["income-header"]}>
             <p>Income Sources</p>
-            <button>Add income source +</button>
+            <button
+              onClick={() =>
+                handleAddRemoveValue(
+                  "ADD",
+                  { ...emptyEmploymentData },
+                  `${dataField}[${index}].employmentData`,
+                  data.id
+                )
+              }
+            >
+              Add income source +
+            </button>
           </div>
-          {b.employmentData.map((e, innerIndex) => (
+          {c.employmentData.map((e, innerIndex) => (
             <div
               key={e.placeOfEmployment}
               className={classes["income-outcome"]}
@@ -206,12 +266,15 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     id="employemnt-type"
                     list="employment-type-values"
                     defaultValue={employmentTypeValues[e.employmentType]}
-                    onBlur={(e) =>
+                    onBlur={(e) => {
+                      const value = Object.entries(employmentTypeValues).find(
+                        ([key, val]) => val === e.target.value
+                      )?.[0];
                       handleMortgageRequestDataUpdate(
-                        e,
+                        value,
                         `${dataField}[${index}].employmentData[${innerIndex}].employmentType`
-                      )
-                    }
+                      );
+                    }}
                   />
                   <datalist id="employment-type-values">
                     {Object.values(employmentTypeValues).map((v) => (
@@ -227,7 +290,7 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     defaultValue={e.placeOfEmployment}
                     onBlur={(e) =>
                       handleMortgageRequestDataUpdate(
-                        e,
+                        e.target.value,
                         `${dataField}[${index}].employmentData[${innerIndex}].placeOfEmployment`
                       )
                     }
@@ -241,7 +304,7 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     defaultValue={e.position}
                     onBlur={(e) =>
                       handleMortgageRequestDataUpdate(
-                        e,
+                        e.target.value,
                         `${dataField}[${index}].employmentData[${innerIndex}].position`
                       )
                     }
@@ -260,7 +323,7 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     defaultValue={e.durationOfEmploymentInYears}
                     onBlur={(e) =>
                       handleMortgageRequestDataUpdate(
-                        e,
+                        e.target.value,
                         `${dataField}[${index}].employmentData[${innerIndex}].durationOfEmploymentInYears`
                       )
                     }
@@ -275,7 +338,7 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     defaultValue={e.monthlySalary}
                     onBlur={(e) =>
                       handleMortgageRequestDataUpdate(
-                        e,
+                        e.target.value,
                         `${dataField}[${index}].employmentData[${innerIndex}].monthlySalary`
                       )
                     }
@@ -290,21 +353,32 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     defaultValue={e.yearlySalary}
                     onBlur={(e) =>
                       handleMortgageRequestDataUpdate(
-                        e,
+                        e.target.value,
                         `${dataField}[${index}].employmentData[${innerIndex}].yearlySalary`
                       )
                     }
                   />
                 </div>
               </div>
-              <button className={classes["remove-income-btn"]}>Remove</button>
+              <button
+                className={classes["remove-income-btn"]}
+                onClick={() =>
+                  handleAddRemoveValue(
+                    "REMOVE",
+                    innerIndex,
+                    `${dataField}[${index}].employmentData`
+                  )
+                }
+              >
+                Remove
+              </button>
             </div>
           ))}
           <div className={classes["spendings-header"]}>
             <p>Spendings</p>
             <button>Add spending +</button>
           </div>
-          {b.spendings.map((s, innerIndex) => (
+          {c.spendings.map((s, innerIndex) => (
             <div key={innerIndex} className={classes["spendings"]}>
               <div className={classes["customer-spendings-data"]}>
                 <div className={classes["spending-label-input"]}>
@@ -314,12 +388,15 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     id="spending-type"
                     defaultValue={spendingValues[s.spendingType]}
                     list="spending-values"
-                    onBlur={(e) =>
+                    onBlur={(e) => {
+                      let value = Object.keys(spendingValues).find(
+                        (key) => spendingValues[key] === e.target.value
+                      );
                       handleMortgageRequestDataUpdate(
-                        e,
+                        value,
                         `${dataField}[${index}].spendings[${innerIndex}].spendingType`
-                      )
-                    }
+                      );
+                    }}
                   />
                   <datalist id="spending-values">
                     {Object.values(spendingValues).map((v) => (
@@ -335,7 +412,7 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     defaultValue={s.spendingAmount}
                     onBlur={(e) =>
                       handleMortgageRequestDataUpdate(
-                        e,
+                        e.target.value,
                         `${dataField}[${index}].spendings[${innerIndex}].spendingAmount`
                       )
                     }
@@ -351,7 +428,7 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     defaultValue={s.remainingDurationInMonths}
                     onBlur={(e) =>
                       handleMortgageRequestDataUpdate(
-                        e,
+                        e.target.value,
                         `${dataField}[${index}].spendings[${innerIndex}].remainingDurationInMonths`
                       )
                     }
@@ -365,7 +442,7 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
             <p>Extra Income</p>
             <button>Add extra income +</button>
           </div>
-          {b.extraIncomes.map((e, innerIndex) => (
+          {c.extraIncomes.map((e, innerIndex) => (
             <div key={innerIndex} className={classes["extra-incomes"]}>
               <div className={classes["customer-extra-income-data"]}>
                 <div className={classes["extra-income-label-input"]}>
@@ -375,12 +452,15 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     id="extra-income-type"
                     list="extra-income-values"
                     defaultValue={extraIncomeValues[e.incomeType]}
-                    onBlur={(e) =>
+                    onBlur={(e) => {
+                      let value = Object.keys(extraIncomeValues).find(
+                        (key) => extraIncomeValues[key] === e.target.value
+                      );
                       handleMortgageRequestDataUpdate(
-                        e,
+                        value,
                         `${dataField}[${index}].extraIncomes[${innerIndex}].incomeType`
-                      )
-                    }
+                      );
+                    }}
                   />
                   <datalist id="extra-income-values">
                     {Object.values(extraIncomeValues).map((v) => (
@@ -397,7 +477,7 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     defaultValue={e.amount}
                     onBlur={(e) =>
                       handleMortgageRequestDataUpdate(
-                        e,
+                        e.target.value,
                         `${dataField}[${index}].extraIncomes[${innerIndex}].amount`
                       )
                     }
@@ -411,7 +491,7 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
                     defaultValue={e.description}
                     onBlur={(e) =>
                       handleMortgageRequestDataUpdate(
-                        e,
+                        e.target.value,
                         `${dataField}[${index}].extraIncomes[${innerIndex}].description`
                       )
                     }
@@ -430,16 +510,20 @@ export default function CustomersAccordionItem({ title, data, dataField }) {
               id="customer-extra-info"
               rows={1}
               maxLength={100}
-              defaultValue={b.extraInfo}
+              defaultValue={c.extraInfo}
               onBlur={(e) =>
                 handleMortgageRequestDataUpdate(
-                  e,
+                  e.target.value,
                   `${dataField}[${index}].extraInfo`
                 )
               }
             ></textarea>
           </div>
-          <button>Remove customer</button>
+          <button
+            onClick={() => handleAddRemoveValue("REMOVE", index, dataField)}
+          >
+            Remove customer
+          </button>
         </AccordionItem>
       ))}
     </AccordionItem>

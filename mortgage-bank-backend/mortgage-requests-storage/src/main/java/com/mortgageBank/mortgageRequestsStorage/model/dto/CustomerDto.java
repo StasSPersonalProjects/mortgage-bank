@@ -16,7 +16,7 @@ import java.util.List;
 @Builder
 public class CustomerDto {
 
-    private long identityCardNumber;
+    private String identityCardNumber;
     private String firstName;
     private String lastName;
     private LocalDate birthDate;

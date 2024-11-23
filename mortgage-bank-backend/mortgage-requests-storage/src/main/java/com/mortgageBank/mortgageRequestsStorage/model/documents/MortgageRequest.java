@@ -11,6 +11,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -27,8 +28,7 @@ public class MortgageRequest {
     private String owner;
     private Set<Customer> borrowers;
     private Set<Customer> guarantees;
-    private RealEstateProperty realEstateProperty;
-    private MortgageComposition mortgageComposition;
+    private List<RealEstateProperty> realEstateProperties;
     private MortgageStatus mortgageStatus;
     private String customerDocumentsDirectory;
     private boolean isPulled;
@@ -49,8 +49,11 @@ public class MortgageRequest {
                 .guarantees(dto.getGuarantees().stream()
                         .map(Customer::of)
                         .collect(Collectors.toSet()))
-                .realEstateProperty(RealEstateProperty.of(dto.getRealEstateProperty()))
-                .mortgageComposition(MortgageComposition.of(dto.getMortgageComposition()))
+                .realEstateProperties(dto
+                        .getRealEstateProperties()
+                        .stream()
+                        .map(RealEstateProperty::of)
+                        .toList())
                 .mortgageStatus(MortgageStatus.IN_PROGRESS)
                 .customerDocumentsDirectory(null)
                 .isPulled(false)

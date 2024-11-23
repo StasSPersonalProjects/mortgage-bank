@@ -17,10 +17,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,6 +50,12 @@ public class MortgageRequestsService {
         return savedMortgageRequest.getId();
     }
 
+    public void addFieldToExistingRequest(long requestId, String field, Object element) {
+        Query query = new Query(Criteria.where("id").is(requestId));
+        Update update = new Update().push(field, element);
+        mongoTemplate.updateFirst(query, update, MortgageRequest.class);
+    }
+
     private long getNewId() {
         String path = "/generate-sequence/mortgageRequest";
         log.info("sending http request via webclient");
@@ -80,7 +83,7 @@ public class MortgageRequestsService {
                 .toList();
     }
 
-    public Set<MortgageRequestSearchResult> findRequestsbyIdCard(long identityCardNumber) {
+    public Set<MortgageRequestSearchResult> findRequestsbyIdCard(String identityCardNumber) {
         log.info("fetching requests for user with ID card number {}", identityCardNumber);
         Criteria criteria = new Criteria().orOperator(
                 Criteria.where("borrowers.identityCardNumber").is(identityCardNumber),
@@ -112,7 +115,20 @@ public class MortgageRequestsService {
     public void updateMortgageRequestFields(Long id, Map<String, Object> fields) {
         Query query = new Query(Criteria.where("id").is(id));
         Update update = new Update();
-        fields.forEach(update::set);
+        fields.forEach((path, value) -> {
+            handleUpdatePath(update, path, value);
+        });
         mongoTemplate.updateFirst(query, update, MortgageRequest.class);
+    }
+
+    private void handleUpdatePath(Update update, String path, Object value) {
+        if (path.contains("[")) {
+            String convertedPath = path.replaceAll("\\[(\\d+)]", ".$1");
+            update.set(convertedPath, value);
+        } else if (path.contains(".")) {
+            update.set(path, value);
+        } else {
+            update.set(path, value);
+        }
     }
 }

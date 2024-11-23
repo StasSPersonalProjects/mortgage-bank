@@ -13,7 +13,7 @@
 }
 
 .menu {
-  height: 35%;
+  height: 30vh;
   border: 1px solid #307e6c;
   display: flex;
   flex-direction: column;
@@ -82,15 +82,8 @@
   transition: background-color 0.3s ease;
 }
 
-.search-input button:hover {
-  background: linear-gradient(180deg, #2b996d, #307e6c);
-}
-
-.search-input button:active {
-  background: linear-gradient(180deg, #307e6c, #2b996d);
-}
-
-.new-request-btn {
+.new-request-btn,
+.save-undo-btns button {
   font-family: 'Quicksand', sans-serif;
   margin-top: 30px;
   width: 65%;
@@ -104,12 +97,28 @@
   transition: background-color 0.3s ease;
 }
 
-.new-request-btn:hover {
+.save-undo-btns button {
+  margin: 5px;
+  margin-top: 4vh;
+}
+
+.search-input button:hover,
+.new-request-btn:hover,
+.save-undo-btns button:hover {
   background: linear-gradient(180deg, #2b996d, #307e6c);
 }
 
-.new-request-btn:active {
+.search-input button:active,
+.new-request-btn:active,
+.save-undo-btns button:active {
   background: linear-gradient(180deg, #307e6c, #2b996d);
+}
+
+.save-undo-btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  max-height: 4.5vh;
 }
 
 .pending-requests {

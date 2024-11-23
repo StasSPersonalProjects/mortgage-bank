@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Builder
 public class Customer {
 
-    private long identityCardNumber;
+    private String identityCardNumber;
     private String firstName;
     private String lastName;
     private LocalDate birthDate;

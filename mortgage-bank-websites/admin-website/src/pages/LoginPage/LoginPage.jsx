@@ -1,5 +1,5 @@
-import AuthForm from "../components/AuthForm";
-import classes from "./styles/LoginPage.module.css";
+import AuthForm from "../../components/AuthForm/AuthForm";
+import classes from "./LoginPage.module.css";
 
 export default function LoginPage() {
   return (

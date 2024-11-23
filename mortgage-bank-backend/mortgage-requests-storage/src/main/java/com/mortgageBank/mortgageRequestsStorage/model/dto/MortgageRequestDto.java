@@ -24,8 +24,7 @@ public class MortgageRequestDto {
     private String owner;
     private List<CustomerDto> borrowers;
     private List<CustomerDto> guarantees;
-    private RealEstatePropertyDto realEstateProperty;
-    private MortgageCompositionDto mortgageComposition;
+    private List<RealEstatePropertyDto> realEstateProperties;
     private MortgageStatus mortgageStatus;
     private String customerDocumentsDirectory;
     private boolean isPulled;
@@ -50,10 +49,11 @@ public class MortgageRequestDto {
                         .stream()
                         .map(CustomerDto::of)
                         .toList())
-                .realEstateProperty(RealEstatePropertyDto
-                        .of(request.getRealEstateProperty()))
-                .mortgageComposition(MortgageCompositionDto
-                        .of(request.getMortgageComposition()))
+                .realEstateProperties(request
+                        .getRealEstateProperties()
+                        .stream()
+                        .map(RealEstatePropertyDto::of)
+                        .toList())
                 .mortgageStatus(request.getMortgageStatus())
                 .customerDocumentsDirectory(request.getCustomerDocumentsDirectory())
                 .isPulled(request.isPulled())

@@ -25,3 +25,6 @@ export const FIND_REQUESTS_URL =
 
 export const UPDATE_MORTGAGE_REQUEST_URL =
   "http://localhost:8084/api/v1/storage/requests/update_request";
+
+export const ADD_MORTGAGE_REQUEST_FIELD_URL =
+  "http://localhost:8084/api/v1/storage/requests/add_field";

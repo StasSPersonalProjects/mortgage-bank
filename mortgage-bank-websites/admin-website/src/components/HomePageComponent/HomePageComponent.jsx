@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import classes from "./styles/HomePageComponent.module.css";
+import classes from "./HomePageComponent.module.css";
 
 export default function HomePageComponent({ data, title, error }) {
   return (

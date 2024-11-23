@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import classes from "./styles/ChangePasswordForm.module.css";
-import ChangePasswordDto from "../models/ChangePasswordDto";
-import { CHANGE_PASSWORD_URL } from "../utils/urls";
+import classes from "./ChangePasswordForm.module.css";
+import ChangePasswordDto from "../../models/ChangePasswordDto";
+import { CHANGE_PASSWORD_URL } from "../../utils/urls";
 
 export default function ChangePasswordForm() {
   const token = useSelector((state) => state.auth.token);

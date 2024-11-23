@@ -14,20 +14,41 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RealEstatePropertyDto {
 
-    private String location;
     private PropertyType propertyType;
     private PropertyStatus propertyStatus;
     private int price;
     private int value;
+    private int existingLeinAmount;
+    private long securityNumber;
+    private String city;
+    private String street;
+    private int houseNumber;
+    private int floor;
+    private int appartment;
+    private long block;
+    private long plot;
+    private long subPlot;
+    private MortgageCompositionDto mortgageComposition;
 
     public static RealEstatePropertyDto of(RealEstateProperty realEstateProperty) {
         return RealEstatePropertyDto
                 .builder()
-                .location(realEstateProperty.getLocation())
                 .propertyType(realEstateProperty.getPropertyType())
                 .propertyStatus(realEstateProperty.getPropertyStatus())
                 .price(realEstateProperty.getPrice())
                 .value(realEstateProperty.getValue())
+                .existingLeinAmount((realEstateProperty.getExistingLeinAmount()))
+                .securityNumber(realEstateProperty.getSecurityNumber())
+                .city(realEstateProperty.getCity())
+                .street(realEstateProperty.getStreet())
+                .houseNumber(realEstateProperty.getHouseNumber())
+                .floor(realEstateProperty.getFloor())
+                .appartment(realEstateProperty.getAppartment())
+                .block(realEstateProperty.getBlock())
+                .plot(realEstateProperty.getPlot())
+                .subPlot(realEstateProperty.getSubPlot())
+                .mortgageComposition(MortgageCompositionDto
+                        .of(realEstateProperty.getMortgageComposition()))
                 .build();
     }
 }

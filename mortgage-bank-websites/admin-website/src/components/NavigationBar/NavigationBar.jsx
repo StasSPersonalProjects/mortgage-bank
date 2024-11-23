@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { logoutUser } from "../store/auth";
-import classes from "./styles/NavigationBar.module.css";
+import { logoutUser } from "../../store/auth";
+import classes from "./NavigationBar.module.css";
 
 export default function NavigationBar() {
   const token = useSelector((state) => state.auth.token);

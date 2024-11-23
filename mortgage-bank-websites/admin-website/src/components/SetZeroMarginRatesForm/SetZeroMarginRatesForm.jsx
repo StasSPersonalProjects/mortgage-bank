@@ -1,9 +1,9 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import LoanRateTypeDto from "../models/LoanRateTypeDto";
-import { CREATE_LOAN_TYPE_URL } from "../utils/urls";
-import classes from "./styles/CreateLoanTypeForm.module.css";
+import LoanRateTypeDto from "../../models/LoanRateTypeDto";
+import { SET_ZERO_MARGINS_URL } from "../../utils/urls";
+import classes from "./SetZeroMarginRatesForm.module.css";
 
 const loanTypesMap = {
   "Fixed interest rate": "FIXED_RATE_NON_INDEXED",
@@ -27,7 +27,7 @@ const initialZeroMarginRates = {
   360: 0,
 };
 
-export default function CreateLoanTypeForm({ availableLoanTypes }) {
+export default function SetZeroMarginRatesForm({ availableLoanTypes }) {
   const token = useSelector((state) => state.auth.token);
 
   const [selectedLoanType, setSelectedLoanType] = useState("");
@@ -59,7 +59,7 @@ export default function CreateLoanTypeForm({ availableLoanTypes }) {
     );
 
     try {
-      const response = await fetch(CREATE_LOAN_TYPE_URL, {
+      const response = await fetch(SET_ZERO_MARGINS_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -89,18 +89,16 @@ export default function CreateLoanTypeForm({ availableLoanTypes }) {
       <div className={classes["loan-type-selection"]}>
         <p className={classes["loan-type-label"]}>Select Loan Type:</p>
         <div>
-          <input
+          <select
             className={classes["rate-select"]}
-            list="loan-types"
-            value={selectedLoanType}
             onChange={(e) => setSelectedLoanType(e.target.value)}
-            placeholder="Choose Loan Type"
-          />
-          <datalist id="loan-types">
+          >
             {availableLoanTypes.map((l) => (
-              <option key={l.id} value={l.loanType} />
+              <option key={l.id} value={l.loanType}>
+                {l.loanType}
+              </option>
             ))}
-          </datalist>
+          </select>
         </div>
       </div>
       <form
@@ -129,3 +127,12 @@ export default function CreateLoanTypeForm({ availableLoanTypes }) {
     </div>
   );
 }
+
+SetZeroMarginRatesForm.propTypes = {
+  availableLoanTypes: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      loanType: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

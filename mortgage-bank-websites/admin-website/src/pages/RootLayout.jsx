@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "../components/NavigationBar/NavigationBar";
 
 export default function RootLayout() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);

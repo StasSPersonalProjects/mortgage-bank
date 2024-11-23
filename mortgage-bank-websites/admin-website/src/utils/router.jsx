@@ -1,14 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import LoginPage from "../pages/LoginPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
 import RootLayout from "../pages/RootLayout";
 import RequiredAuth from "../pages/RequiredAuth";
-import HomePage from "../pages/HomePage";
-import Unauthorized from "../pages/Unauthorized";
-import ErrorPage from "../pages/ErrorPage";
-import ManageUsersPage from "../pages/ManageUsersPage";
-import ManageMarginsPage from "../pages/ManageMarginsPage";
-import ManageAccountPage from "../pages/ManageAccountPage";
-import ManageInterestRatesPage from "../pages/ManageInterestRatesPage";
+import HomePage from "../pages/HomePage/HomePage";
+import Unauthorized from "../pages/Unauthorized/Unauthorized";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import ManageUsersPage from "../pages/ManageUsersPage/ManageUsersPage";
+import ManageMarginsPage from "../pages/ManageMarginsPage/ManageMarginsPage";
+import ManageAccountPage from "../pages/ManageAccountPage/ManageAccountPage";
+import ManageInterestRatesPage from "../pages/ManageInterestRatesPage/ManageInterestRatesPage";
 
 export const router = createBrowserRouter([
   {
@@ -43,18 +43,18 @@ export const router = createBrowserRouter([
           {
             path: "/margins",
             id: "margins",
-            element: <ManageMarginsPage />
+            element: <ManageMarginsPage />,
           },
           {
             path: "/account",
             id: "account",
-            element: <ManageAccountPage />
+            element: <ManageAccountPage />,
           },
           {
             path: "/interest_rates",
             id: "interest_rates",
-            element: <ManageInterestRatesPage />
-          }
+            element: <ManageInterestRatesPage />,
+          },
         ],
       },
     ],

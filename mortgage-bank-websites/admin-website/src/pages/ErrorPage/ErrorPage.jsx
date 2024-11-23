@@ -1,4 +1,4 @@
-import classes from "./styles/ErrorPage.module.css";
+import classes from "./ErrorPage.module.css";
 
 export default function ErrorPage() {
   return (

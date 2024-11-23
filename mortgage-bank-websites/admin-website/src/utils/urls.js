@@ -33,5 +33,5 @@ export const GET_ACTIVE_EMPLOYEES_URL =
 export const GET_AVAILABLE_LOAN_TYPES_URL =
   "http://localhost:8085/margins/config/types";
 
-export const CREATE_LOAN_TYPE_URL =
+export const SET_ZERO_MARGINS_URL =
   "http://localhost:8085/margins/config/create";

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { NEW_EMPLOYEE_REGISTRATION_URL } from "../utils/urls";
+import { NEW_EMPLOYEE_REGISTRATION_URL } from "../../utils/urls";
 import { useSelector } from "react-redux";
-import classes from "./styles/RegisterNewUserForm.module.css";
-import RegisterationDto from "../models/RegisterationDto";
+import classes from "./RegisterNewUserForm.module.css";
+import RegisterationDto from "../../models/RegisterationDto";
 
 export default function RegisterNewUserForm({
   availableRoles,

@@ -6,9 +6,9 @@ import {
   DEACTIVATION_URL,
   FIND_USER_URL,
   RESTORATION_URL,
-} from "../utils/urls";
-import classes from "./styles/ChangeEmployeeData.module.css";
-import ChangeRolesDto from "../models/ChangeRolesDto";
+} from "../../utils/urls";
+import classes from "./ChangeEmployeeData.module.css";
+import ChangeRolesDto from "../../models/ChangeRolesDto";
 
 const searchResultInitialState = {
   id: null,

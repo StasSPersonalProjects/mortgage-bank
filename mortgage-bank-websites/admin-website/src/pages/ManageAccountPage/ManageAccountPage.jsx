@@ -1,6 +1,6 @@
-import AccordionItem from "../components/AccordionItem";
-import ChangePasswordForm from "../components/ChangePasswordForm";
-import classes from "./styles/ManageAccountPage.module.css";
+import AccordionItem from "../../components/AccordionItem/AccordionItem";
+import ChangePasswordForm from "../../components/ChangePasswordForm/ChangePasswordForm";
+import classes from "./ManageAccountPage.module.css";
 
 export default function ManageAccountPage() {
   return (

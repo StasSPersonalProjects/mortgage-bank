@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import classes from "./MainPage.module.css";
 import QueueTab from "../../components/QueueTab/QueueTab";
 import QueueTable from "../../components/QueueTable/QueueTable";
-import { FIND_REQUESTS_URL } from "../../utils/urls";
+import {
+  FIND_REQUESTS_URL,
+  UPDATE_MORTGAGE_REQUEST_URL,
+} from "../../utils/urls";
 import { useQueues } from "../../store/queues-context";
 import { useDispatch, useSelector } from "react-redux";
 import { workFieldActions } from "../../store/workField";
@@ -30,6 +33,7 @@ export default function MainPage() {
     (state) => state.workField.isWorkFieldActive
   );
   const activeWorkTab = useSelector((state) => state.workField.active);
+  const workFieldTabs = useSelector((state) => state.workField.workFieldTabs);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -67,6 +71,7 @@ export default function MainPage() {
           searchBy === "Request number"
             ? `Request #${responseData.id}`
             : `Requests for ${searchValue}`,
+        updatedFields: {},
       };
       dispatch(workFieldActions.enableWorkField());
       dispatch(workFieldActions.addWorkFieldTab(searchResult));
@@ -76,6 +81,38 @@ export default function MainPage() {
     }
   };
 
+  const handleSaveMortgageRequestChanges = async () => {
+    const id =
+      workFieldTabs[
+        workFieldTabs.findIndex((tab) => tab.label === activeWorkTab)
+      ].id;
+    const updatesToSend =
+      workFieldTabs[
+        workFieldTabs.findIndex((tab) => tab.label === activeWorkTab)
+      ].updatedFields;
+
+    const updates = {
+      id: id,
+      fields: { ...updatesToSend },
+    };
+
+    try {
+      const response = await fetch(UPDATE_MORTGAGE_REQUEST_URL, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updates),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  console.log(workFieldTabs)
   return (
     <div className={classes["main-page"]}>
       <div className={classes["work-menu"]}>
@@ -115,6 +152,10 @@ export default function MainPage() {
           <button className={classes["new-request-btn"]}>
             Create New Request
           </button>
+          <div className={classes["save-undo-btns"]}>
+            <button onClick={handleSaveMortgageRequestChanges}>Save</button>
+            <button>Undo</button>
+          </div>
         </div>
         <div className={classes["pending-requests"]}>
           <div className={classes["tabs-container"]}>
